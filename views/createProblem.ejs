@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Problem</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="container welcome">
+                    <h2>Create Problem</h2>
+                </div><br>
+                <form method="post" action="/create-problem">
+                    <div class="form-row">
+                        <div class="col-7">
+                            <label style="float: left">Problem Title</label>
+                            <input type="text" class="form-control" placeholder="Enter Title" name="problemTitle">
+                        </div>
+                        <br>
+                        <div class="col">
+                            <label style="float: left">Time Limit</label>
+                            <input type="text" class="form-control" placeholder="Enter Time Limit" name="timeLimit">
+                        </div>
+                        <br>
+                        <div class="col">
+                            <label style="float: left">Memory Limit</label>
+                            <input type="text" class="form-control" placeholder="Enter Memory Limit" name="memoryLimit">
+                        </div>
+                        <br>
+                        <div class="col">
+                            <label style="float: left">Problem Details</label>
+                            <textarea class="form-control" rows="5" placeholder="Enter Problem Details" name="problemDetails"></textarea>
+                        </div>
+                        <br>
+                        <div class="col">
+                                <label style="float: left">Sample Input</label>
+                                <textarea class="form-control" rows="5" placeholder="Enter Sample Input" name="sampleInput"></textarea>
+                            </div>
+                            <br>
+                            <div class="col">
+                                <label style="float: left">Sample Output</label>
+                                <textarea class="form-control" rows="5" placeholder="Enter Sample Output" name="sampleOutput"></textarea>
+                            </div>
+                        <br>
+
+                        <div class="col">
+                            <label style="float: left">Input</label>
+                            <textarea class="form-control" rows="5" placeholder="Enter Input" name="input"></textarea>
+                        </div>
+                        <br>
+                        <div class="col">
+                            <label style="float: left">Output</label>
+                            <textarea class="form-control" rows="5" placeholder="Enter Output" name="output"></textarea>
+                        </div>
+                        <input type="hidden" value="abc" name="userName">
+                        <br>
+                        <input id="submitNews" type="submit" class="form-control btn-primary" value="Submit News" style="width: 200px;float: right;"><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

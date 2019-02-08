@@ -1,0 +1,65 @@
+<div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Create New Problem</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <form method="post" action="/create-problem">
+                        <div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Enter Title" name="problemTitle">
+                            </div>
+                            <br>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Enter Time Limit" name="timeLimit">
+                            </div>
+                            <br>
+                            <div class="col">
+                                
+                                <input type="text" class="form-control" placeholder="Enter Memory Limit" name="memoryLimit">
+                            </div>
+                            <br>
+                            <div class="col">
+                                
+                                <textarea  rows="5" class="form-control" placeholder="Enter Problem Details" name="problemDetails"></textarea>
+                            </div>
+                            <br>
+                            <div class="col">
+                                
+                                    <textarea  rows="5" class="form-control" placeholder="Enter Sample Input" name="sampleInput"></textarea>
+                                </div>
+                                <br>
+                                <div class="col">
+                                
+                                    <textarea rows="5" class="form-control" placeholder="Enter Sample Output" name="sampleOutput"></textarea>
+                                </div>
+                            <br>
+    
+                            <div class="col">
+                                
+                                <textarea  rows="5" class="form-control" placeholder="Enter Input" name="input"></textarea>
+                            </div>
+                            <br>
+                            <div class="col">
+                                
+                                <textarea  rows="5" class="form-control" placeholder="Enter Output" name="output"></textarea>
+                            </div>
+                            <input type="hidden" value="abc" name="userName">
+                            <br>
+                            <input type="submit" class=" btn btn-primary" value="Save" style="float: right;"><br>
+                        </div>
+                    </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+</div>
