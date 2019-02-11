@@ -5,14 +5,11 @@
     <title>Create New</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="js/login.js"></script>
     <style>
         
     </style>
 </head>
 <body>
-<%- include test.ejs %>
-
 <div class="container">
     <div class="row">
         <div class="col text-center">
@@ -22,7 +19,7 @@
                         <h2 style="color: white;">Login Here</h2>
                     </div>
                     <br>
-                    <form method="post" action="/">
+                    <form method="post" action="/admin/home">
                         <div class="form-row">
                             <div class="col-2">
                                 <input class="form-control" type="text" placeholder="Enter Username" name="userName" id="userName"><br>
@@ -33,15 +30,7 @@
                             </div>
                             <br>
 
-                            <div class="col-2">
-                                <select class="form-control" name="userRole">
-                                    <option>Select Role</option>
-                                    <option value="1">Problem Setter</option>
-                                    <option value="2">Candidate</option>
-                                    <option value="3">Collaborator</option>                                    
-                                </select>
-                            </div>
-                            <br>
+                           
                             <div class="col-2">
                                 <input style="float: left" id="submitNews" class="btn btn-success" type="submit" value="Login">
                                 <a href="/register"><button id="mybtn" style="float: right" type="button" class="btn btn-warning" >Sign Up</button></a>

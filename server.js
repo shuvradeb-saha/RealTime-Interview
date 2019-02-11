@@ -1,8 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var session = require('express-session');
+
+
 
 // create express app
 const app = express();
+
+app.use(methodOverride('_method'));
+app.use(session({secret: 'ssshhhhh'}));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -25,18 +32,6 @@ mongoose.connect(dbConfig.url, {
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
-});
-
-app.get('/', (req, res) => {
-    res.render("admin.ejs");
-    // res.render("login");
-    // res.render("welcome", {
-    //     'name': "hello df"
-    // });
-});
-
-app.get('/register', (req, res) => {
-    res.render("register");
 });
 
 require('./routes/user.routes.js')(app);

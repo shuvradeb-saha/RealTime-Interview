@@ -1,4 +1,6 @@
-const User = require('../model/user.model.js');
+const User = require('../model/user.model');
+const Problem = require('../model/problem.model');
+
 
 exports.create = (req, res) => {
     if(!req.body.userName) {
@@ -6,11 +8,11 @@ exports.create = (req, res) => {
             message: "User content can not be empty"
         });
     }
-
     const user = new User({
         fullName: req.body.fullName, 
         userName: req.body.userName,
-        password: req.body.password
+        password: req.body.password,
+        role: req.body.userRole
     });
 
     user.save()
@@ -79,8 +81,31 @@ exports.login = (req, res) =>{
             console.log("error ");                
             res.send("error ");
         }else{
-            res.render("welcome",{name:user.userName});
+            // res.render("welcome",{name:user.userName});
             //res.send(user+req.body.userRole);
+            //res.render("admin",{user: user,ass:"Rifat"});
+            if(user.role=="admin"){
+                console.log("userName: "+user.userName);
+                var sess = req.session;
+                sess.userName = user.userName;
+                sess.role = user.role;
+
+                res.redirect('/admin/home');
+
+                Problem.find({setterName:user.userName,status: true},{problemTitle:1})
+                .then(problem => {
+                    console.log("problems : "+problem);
+                    //res.send(problem);
+                    res.render("admin",{userName: user.userName,problems: problem});
+                }).catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while retrieving notes."
+                    });
+                });
+                //res.send("hjhjh");
+            }else{
+                res.send("candidate");
+            }
         }
     }).catch(err => {
         if(err.kind === 'ObjectId') {
@@ -94,3 +119,66 @@ exports.login = (req, res) =>{
     });
     console.log("hello login");
 };
+
+exports.logout = (req, res) => {
+    req.session.destroy(function(err) {
+        if(err) {
+          console.log(err);
+        } else {
+          res.redirect('/');
+        }
+      });
+      
+}
+
+
+exports.getProblem = (req, res) => {
+    // if(!req.params.userName || !req.params.problemId){
+    //     console.log("nullll");
+    // }
+    var short = req.query.short || false;
+    if(!short){
+        getFullProblem(req,res);
+    }else{
+        getShortedProblem(req,res);
+    }
+};
+
+function getShortedProblem(req,res){
+    Problem.findOne({_id:req.params.problemId,setterName: req.params.userName,status: true},{input:0,output:0}).
+    then(
+        problem => {
+            //console.log("problem == "+problem)
+            res.render("viewProblem",{problem:problem});
+          // res.send(problem);
+        }
+    ).catch(
+        err => {
+            return res.status(404).send({
+                message: "problem not found with id " + req.params.problemId
+            }); 
+        }
+    );
+   
+}
+
+function getFullProblem(req, res){
+    Problem.findOne({_id:req.params.problemId,setterName: req.params.userName,status: true}).
+    then(
+        problem => {
+            //console.log("problem == "+problem)
+           // res.render("viewProblem",{problem:problem});
+           res.send(problem);
+        }
+    ).catch(
+        err => {
+            return res.status(404).send({
+                message: "problem not found with id " + req.params.problemId
+            }); 
+        }
+    );
+   
+}
+
+
+
