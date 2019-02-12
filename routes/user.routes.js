@@ -8,7 +8,7 @@ module.exports = (app) => {
     app.post('/admin/home', users.login);
     app.get('/logout',users.logout);
     
-    app.get('/admin/home');
+    app.get('/admin/home',users.renderAdminHome);
     app.get('/problems', problems.findAllProblem);
 
     app.post('/admin/:userName/problems', problems.createProblem);
@@ -17,8 +17,8 @@ module.exports = (app) => {
 
     
 app.get('/', (req, res) => {
-    
-    res.render("login");
+    res.render("view-rooms");
+    //res.render("login");
    //res.render("viewProblem");
    // res.render("welcome", {
    //     'name': "hello df"

@@ -4,7 +4,7 @@ exports.createProblem = (req, res) => {
     const problem = extractProblem(req, res);
     problem.save()
     .then(data => {
-        return res.redirect("ddfd");
+        return res.redirect("/admin/home?success");
     }).catch(err =>{
         res.status(400).send({
             message : err.message || "Some error occurred while creating the Problem."
